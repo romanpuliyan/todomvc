@@ -40,5 +40,23 @@ class Route
                 $actionName = implode('', $parts);
             }
         }
+
+        if(lcfirst($controllerName) == 'error') {
+            self::errorPage404();
+        }
+    }
+
+    public static function send404Headers()
+    {
+        header('HTTP/1.1 404 Not Found');
+        header("Status: 404 Not Found");
+    }
+
+    public static function errorPage404()
+    {
+        self::send404Headers();
+        $controller = new \application\controllers\ErrorController();
+        $controller->actionError404();
+        exit();
     }
 }
