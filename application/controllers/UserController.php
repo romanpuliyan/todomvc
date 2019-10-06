@@ -2,7 +2,9 @@
 
 namespace application\controllers;
 
-class UserController
+use core\Controller;
+
+class UserController extends Controller
 {
     public function actionLogin()
     {

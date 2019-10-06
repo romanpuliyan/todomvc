@@ -2,15 +2,17 @@
 
 namespace application\controllers;
 
-class ErrorController
+use core\Controller;
+
+class ErrorController extends Controller
 {
     public function actionError()
     {
-        echo 'error';
+        $this->view->render('error/error');
     }
 
     public function actionError404()
     {
-        echo '404';
+        $this->view->render('error/error-404');
     }
 }
