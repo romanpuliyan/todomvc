@@ -1,5 +1,5 @@
 <div class="page-content page-container" id="page-content">
-    <div class="padding">
+    <div class="container d-flex justify-content-center todo-list-container">
         <div class="row container d-flex justify-content-center">
             <div class="col-lg-12">
                 <div class="card px-3">
