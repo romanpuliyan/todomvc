@@ -41,7 +41,37 @@ class Route
             }
         }
 
+        // CAN NOT MANUALY LOAD ERROR PAGES
         if(lcfirst($controllerName) == 'error') {
+            self::errorPage404();
+        }
+
+        // PREFIXES
+        $controllerName = ucfirst($controllerName);
+        $actionName     = ucfirst($actionName);
+        $controllerName = $controllerName . 'Controller';
+        $actionName     = 'action' . $actionName;
+
+        // CREATE CONTROLLER
+        try {
+            $qualifiedControllerName = '\\application\\controllers\\' . $controllerName;
+            $controller = new $qualifiedControllerName;
+        }
+        catch(\Exception $e) {
+            self::errorPage404();
+        }
+
+        // EXECUTE ACTION
+        $action = $actionName;
+        if(method_exists($controller, $action)) {
+            try {
+                $controller->$action();
+            }
+            catch(\Exception $e) {
+                self::errorPage($e);
+            }
+        }
+        else {
             self::errorPage404();
         }
     }
@@ -57,6 +87,15 @@ class Route
         self::send404Headers();
         $controller = new \application\controllers\ErrorController();
         $controller->actionError404();
+        exit();
+    }
+
+    public static function errorPage()
+    {
+        http_response_code(500);
+
+        $controller = new \application\controllers\ErrorController();
+        $controller->actionError();
         exit();
     }
 }

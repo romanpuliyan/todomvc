@@ -12,7 +12,6 @@ class Autoloader
      */
     public static function load($className): bool
     {
-        // REPLACE '\' TO '/'. 2 SLASHES, BECAUSE ESCAPING
         $relativePath = str_replace('\\', DIRECTORY_SEPARATOR, $className);
         $absolutePath = realpath(APPLICATION_PATH . "/../" . $relativePath . '.php');
 
