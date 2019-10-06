@@ -6,9 +6,9 @@ class Controller
 {
     public $view;
 
-    public function __construct()
+    public function __construct($view)
     {
-        $this->view = new View();
+        $this->view = $view;
         $this->init();
     }
 

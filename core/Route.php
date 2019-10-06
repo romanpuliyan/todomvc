@@ -54,8 +54,12 @@ class Route
 
         // CREATE CONTROLLER
         try {
+
+            // VIEW
+            $view = new View();
+
             $qualifiedControllerName = '\\application\\controllers\\' . $controllerName;
-            $controller = new $qualifiedControllerName;
+            $controller = new $qualifiedControllerName($view);
         }
         catch(\Exception $e) {
             self::errorPage404();
