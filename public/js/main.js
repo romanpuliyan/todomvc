@@ -1,6 +1,5 @@
 $(document).ready(function() {
     var todoListItem = $('.todo-list');
-    var todoListInput = $('.todo-list-input');
 
     $('.todo-list-add-btn').on("click", function(event) {
         event.preventDefault();
@@ -25,5 +24,9 @@ $(document).ready(function() {
 
     todoListItem.on('click', '.remove', function() {
         $(this).parent().remove();
+    });
+
+    $('.filter-date').datepicker({
+        uiLibrary: 'bootstrap4'
     });
 });

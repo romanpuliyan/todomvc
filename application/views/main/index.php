@@ -8,7 +8,10 @@
                         <div class="add-items d-flex">
                             <button class="add btn btn-primary font-weight-bold todo-list-add-btn" data-toggle="modal" data-target="#newItemModal">Add</button>
                         </div>
-                        <div class="add-items d-flex"> <input type="text" class="form-control todo-list-input" placeholder="What do you need to do today?">
+                        <div class="add-items d-flex">
+                            <input type="text" class="form-control filter-name" placeholder="Name" />
+                            <input type="text" class="form-control filter-description" placeholder="Description" />
+                            <input type="text" class="form-control filter-date" placeholder="" />
                             <button class="add btn btn-primary font-weight-bold todo-list-add-btn">Apply</button>
                         </div>
                         <div class="list-wrapper">
