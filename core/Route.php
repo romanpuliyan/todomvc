@@ -89,17 +89,20 @@ class Route
     public static function errorPage404()
     {
         self::send404Headers();
-        $controller = new \application\controllers\ErrorController();
+
+        $view = new View();
+        $controller = new \application\controllers\ErrorController($view);
         $controller->actionError404();
         exit();
     }
 
-    public static function errorPage()
+    public static function errorPage($e)
     {
         http_response_code(500);
 
-        $controller = new \application\controllers\ErrorController();
-        $controller->actionError();
+        $view = new View();
+        $controller = new \application\controllers\ErrorController($view);
+        $controller->actionError($e);
         exit();
     }
 }
