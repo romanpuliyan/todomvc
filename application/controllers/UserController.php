@@ -8,6 +8,6 @@ class UserController extends Controller
 {
     public function actionLogin()
     {
-        throw new \Exception('test');
+        echo 222; exit();
     }
 }
