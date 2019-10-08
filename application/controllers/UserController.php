@@ -8,6 +8,11 @@ class UserController extends Controller
 {
     public function actionLogin()
     {
-        echo 222; exit();
+        $this->view->render('user/login');
+    }
+
+    public function actionRegistration()
+    {
+        $this->view->render('user/registration');
     }
 }

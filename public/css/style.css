@@ -449,6 +449,10 @@ input[type="checkbox"] {
     margin-top: 15px;
 }
 
+.registration-link {
+    margin-top: 20px;
+}
+
 /*.bootstrap-datetimepicker-widget {
     position: absolute;
     z-index: 100 !important;

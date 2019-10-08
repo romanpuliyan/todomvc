@@ -19,7 +19,7 @@ class Controller
 
     public function redirect($route)
     {
-        if($route) {
+        if(!$route) {
             throw new \Exception('Undefined value for redirect');
         }
 
