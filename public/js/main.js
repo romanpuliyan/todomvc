@@ -25,10 +25,10 @@ $(document).ready(function() {
     todoListItem.on('click', '.remove', function() {
         $(this).parent().remove();
     });
-    
+
     $(function () {
         $('.filter-date').datetimepicker({
-            format: 'L'
+            format: 'DD/MM/YYYY'
         });
     });
 });
