@@ -8,12 +8,34 @@
                         <div class="add-items d-flex">
                             <button class="add btn btn-primary font-weight-bold todo-list-add-btn" data-toggle="modal" data-target="#newItemModal">Add</button>
                         </div>
+
+                        <!-- FILTER -->
                         <div class="add-items d-flex">
-                            <input type="text" class="form-control filter-name" placeholder="Name" />
-                            <input type="text" class="form-control filter-description" placeholder="Description" />
-                            <input type="text" class="form-control filter-date" placeholder="" />
-                            <button class="add btn btn-primary font-weight-bold todo-list-add-btn">Apply</button>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-3">
+                                    <input type="text" class="form-control filter-name" placeholder="Name" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input type="text" class="form-control filter-description" placeholder="Description" />
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <div class="input-group date filter-date" id="filter-date" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#filter-date"/>
+                                        <div class="input-group-append" data-target="#filter-date" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <button class="add btn btn-primary font-weight-bold todo-list-add-btn">Apply</button>
+                                </div>
+                            </div>
                         </div>
+
+                        <!-- LIST -->
                         <div class="list-wrapper">
                             <ul class="d-flex flex-column-reverse todo-list">
                                 <li>

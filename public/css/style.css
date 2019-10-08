@@ -70,11 +70,6 @@ body {
     font-weight: 500
 }
 
-.add-items {
-    margin-bottom: 1.5rem;
-    overflow: hidden
-}
-
 .d-flex {
     display: flex !important
 }
@@ -124,12 +119,12 @@ body {
 
 .add-items {
     margin-bottom: 1.5rem;
-    overflow: hidden
+    overflow: inherit;
 }
 
 .add-items input[type="text"] {
     border-top-right-radius: 0;
-    border-bottom-right-radius: 0;    
+    border-bottom-right-radius: 0;
     background: transparent
 }
 
@@ -453,3 +448,8 @@ input[type="checkbox"] {
 .todo-list-container {
     margin-top: 15px;
 }
+
+/*.bootstrap-datetimepicker-widget {
+    position: absolute;
+    z-index: 100 !important;
+}*/

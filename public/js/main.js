@@ -25,8 +25,10 @@ $(document).ready(function() {
     todoListItem.on('click', '.remove', function() {
         $(this).parent().remove();
     });
-
-    $('.filter-date').datepicker({
-        uiLibrary: 'bootstrap4'
+    
+    $(function () {
+        $('.filter-date').datetimepicker({
+            format: 'L'
+        });
     });
 });
