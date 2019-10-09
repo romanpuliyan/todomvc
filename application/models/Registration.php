@@ -84,6 +84,6 @@ class Registration extends Model
 
     protected function process($data)
     {
-
+        $pdo = Db::getInstance()->getPdo();
     }
 }
