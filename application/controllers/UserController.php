@@ -20,7 +20,7 @@ class UserController extends Controller
 
             $model = new User();
             if($model->register($_POST)) {
-
+                echo 'valid'; exit();
             }
             else {
                 $errors = $model->getErrors();
