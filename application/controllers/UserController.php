@@ -3,7 +3,7 @@
 namespace application\controllers;
 
 use core\Controller;
-use application\models\User;
+use application\models\Registration;
 
 class UserController extends Controller
 {
@@ -18,7 +18,7 @@ class UserController extends Controller
         $values = [];
         if($_POST) {
 
-            $model = new User();
+            $model = new Registration();
             if($model->register($_POST)) {
                 echo 'valid'; exit();
             }

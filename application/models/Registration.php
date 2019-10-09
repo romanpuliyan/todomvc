@@ -6,7 +6,7 @@ use core\Model;
 use core\Db;
 use core\Sanitizer;
 
-class User extends Model
+class Registration extends Model
 {
 
     const PASSWORD_MIN_LENGTH = 6;
