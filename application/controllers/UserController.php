@@ -3,6 +3,7 @@
 namespace application\controllers;
 
 use core\Controller;
+use application\models\User;
 
 class UserController extends Controller
 {
@@ -13,6 +14,19 @@ class UserController extends Controller
 
     public function actionRegistration()
     {
-        $this->view->render('user/registration');
+        $errors = [];
+        if($_POST) {
+            $model = new User();
+            if($model->register($_POST)) {
+
+            }
+            else {
+                $errors = $model->getErrors();
+            }
+        }
+
+        $this->view->render('user/registration', [
+            'errors' => $errors
+        ]);
     }
 }
