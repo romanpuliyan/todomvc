@@ -4,12 +4,16 @@ namespace application\models;
 
 use core\Model;
 use core\Db;
+use core\Sanitizer;
 
 class User extends Model
 {
     public function register($data)
-    {        
-        //var_dump($data); exit();
+    {
+
+        $sanitizer = Sanitizer::getInstance();
+        $data = $sanitizer->sanitizeArray($data);
+        $this->setValues($data);
 
         if(!isset($data['username']) || empty($data['username'])) {
             $this->errors['username'] = 'Username is required';
@@ -33,7 +37,21 @@ class User extends Model
                 $this->errors['repeat-password'] = 'Password mismatch';
             }
         }
+    }
 
-
+    protected function setValues($data)
+    {
+        if(isset($data['username'])) {
+            $this->values['username'] = $data['username'];
+        }
+        if(isset($data['login'])) {
+            $this->values['login'] = $data['login'];
+        }
+        if(isset($data['password'])) {
+            $this->values['password'] = $data['password'];
+        }
+        if(isset($data['repeat-password'])) {
+            $this->values['repeat-password'] = $data['repeat-password'];
+        }
     }
 }

@@ -15,18 +15,22 @@ class UserController extends Controller
     public function actionRegistration()
     {
         $errors = [];
+        $values = [];
         if($_POST) {
+
             $model = new User();
             if($model->register($_POST)) {
 
             }
             else {
                 $errors = $model->getErrors();
+                $values = $model->getValues();
             }
         }
 
         $this->view->render('user/registration', [
-            'errors' => $errors
+            'errors' => $errors,
+            'values' => $values
         ]);
     }
 }

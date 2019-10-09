@@ -3,6 +3,7 @@
 
     <?php
 
+        // PREPARE ERRORS
         $usernameError       = '';
         $usernameClass       = '';
         $loginError          = '';
@@ -44,13 +45,22 @@
             $repeatPasswordClass = 'is-valid';
         }
 
+        // PREPARE VALUES FOR POPULATE
+        $usernameValue = '';
+        $loginValue    = '';
+        if(isset($values['username'])) {
+            $usernameValue = $values['username'];
+        }
+        if(isset($values['login'])) {
+            $loginValue = $values['login'];
+        }
     ?>
     <form action="" method="POST">
 
         <!-- USERNAME -->
         <div class="form-group">
-            <label for="uname">Username:</label>
-            <input type="text" class="form-control <?= $usernameClass ?>" id="username" placeholder="Enter username" name="username">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control <?= $usernameClass ?>" id="username" placeholder="Enter username" name="username" value="<?= $usernameValue ?>">
 
             <?php if($usernameError): ?>
                 <div class="invalid-feedback">
@@ -61,8 +71,8 @@
 
         <!-- LOGIN -->
         <div class="form-group">
-            <label for="uname">Login:</label>
-            <input type="text" class="form-control <?= $loginClass ?>" id="login" placeholder="Enter login" name="login">
+            <label for="login">Login:</label>
+            <input type="text" class="form-control <?= $loginClass ?>" id="login" placeholder="Enter login" name="login" value="<?= $loginValue ?>">
 
             <?php if($loginError): ?>
                 <div class="invalid-feedback">
@@ -73,7 +83,7 @@
 
         <!-- PASSWORD -->
         <div class="form-group">
-            <label for="pwd">Password:</label>
+            <label for="password">Password:</label>
             <input type="password" class="form-control <?= $passwordClass ?>" id="password" placeholder="Enter password" name="password">
 
             <?php if($passwordError): ?>
@@ -85,7 +95,7 @@
 
         <!-- REPEAT PASSWORD -->
         <div class="form-group">
-            <label for="pwd">Repeat password:</label>
+            <label for="repeat-password">Repeat password:</label>
             <input type="password" class="form-control <?= $repeatPasswordClass ?>" id="repeat-password" placeholder="Repeat password" name="repeat-password">
 
             <?php if($repeatPasswordError): ?>
