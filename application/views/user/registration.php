@@ -1,6 +1,12 @@
 <div class="container">
     <h2>Registration</h2>
 
+    <?php if(isset($errors['common'])): ?>
+        <div class="alert alert-danger" role="alert">
+            <?= $errors['common'] ?>
+        </div>
+    <?php endif; ?>
+
     <?php
 
         // PREPARE ERRORS

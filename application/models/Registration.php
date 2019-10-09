@@ -54,6 +54,15 @@ class Registration extends Model
             return false;
         }
 
+        // PROCESS
+        try {
+            $this->process($data);
+        }
+        catch(\Exception $e) {
+            $this->errors['common'] = 'Error while processing form';
+            return false;
+        }
+
         return true;
     }
 
@@ -71,5 +80,10 @@ class Registration extends Model
         if(isset($data['repeat-password'])) {
             $this->values['repeat-password'] = $data['repeat-password'];
         }
+    }
+
+    protected function process($data)
+    {
+
     }
 }
