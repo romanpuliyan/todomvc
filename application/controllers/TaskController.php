@@ -3,6 +3,7 @@
 namespace application\controllers;
 
 use core\Controller;
+use core\FlashMessages;
 use application\services\Task;
 
 class TaskController extends Controller
@@ -13,7 +14,7 @@ class TaskController extends Controller
             $response = [
                 'error'  => true,
                 'errors' => [
-                    'common' => 'Error while processing form'
+                    'common' => 'Fill the form please'
                 ]
             ];
             echo json_encode($response);
@@ -22,7 +23,12 @@ class TaskController extends Controller
 
         $service = new Task();
         if($service->create($_POST)) {
-            echo 'created'; exit();
+            FlashMessages::getInstance()->set(FlashMessages::KEY_SUCCESS, "Task added");
+            $response = [
+                'success' => true
+            ];
+            echo json_encode($response);
+            exit();
         }
         else {
             $response = [

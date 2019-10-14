@@ -75,6 +75,9 @@ $(document).ready(function() {
                         modalDangerMessage.text('').hide();
                     }
                 }
+                else if(response.success != undefined) {
+                    window.location.href = '/';
+                }
 
             }
         });

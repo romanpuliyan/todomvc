@@ -7,6 +7,7 @@ CREATE TABLE `user` (
 
 CREATE TABLE `task` (
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `user_id` INT(11) UNSIGNED NOT NULL,
     `title` VARCHAR(50) NOT NULL DEFAULT '',
     `description` VARCHAR(255) NOT NULL DEFAULT '',
     `date_completed` INT(11),
