@@ -11,7 +11,7 @@ class MainController extends Controller
     function actionIndex()
     {
         if(!Auth::getInstance()->getIdentity()) {
-            $this->redirect('/');
+            $this->redirect('/user/login');
         }
 
         $this->view->render('main/index', [
