@@ -7,6 +7,7 @@ class Sanitizer
     protected static $instance;
 
     protected function __construct() {}
+    protected function __clone() {}
 
     public static function getInstance()
     {

@@ -21,6 +21,8 @@ class Db
         $this->pdo = new \PDO("mysql:host=$host;dbname=$dbname", $user, $password);
     }
 
+    protected function __clone() {}
+
     public static function getInstance()
     {
         if(!self::$instance) {

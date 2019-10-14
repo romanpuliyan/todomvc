@@ -11,6 +11,8 @@ class Auth
         session_start();
     }
 
+    protected function __clone() {}
+
     public static function getInstance()
     {
         if(!self::$instance) {
@@ -27,5 +29,10 @@ class Auth
         }
 
         return $_SESSION['user'];
+    }
+
+    public function encryptPassword($password)
+    {
+        return md5($password);
     }
 }

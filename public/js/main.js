@@ -31,4 +31,9 @@ $(document).ready(function() {
             format: 'DD/MM/YYYY'
         });
     });
+
+    $(".todo-submit").on("click", function(e) {
+        e.preventDefault();
+        console.log('fff');
+    })
 });

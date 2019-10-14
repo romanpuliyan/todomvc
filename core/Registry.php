@@ -15,6 +15,8 @@ class Registry
         $this->params['config'] = $config;
     }
 
+    protected function __clone() {}
+
     public static function getInstance()
     {
         if(!self::$instance) {

@@ -5,6 +5,8 @@ namespace application\models;
 use core\Model;
 use core\Db;
 use core\Sanitizer;
+use core\Auth;
+use core\Log;
 
 class Registration extends Model
 {
@@ -60,6 +62,7 @@ class Registration extends Model
         }
         catch(\Exception $e) {
             $this->errors['common'] = 'Error while processing form';
+            Log::getInstance()->logError($e);
             return false;
         }
 
@@ -85,5 +88,31 @@ class Registration extends Model
     protected function process($data)
     {
         $pdo = Db::getInstance()->getPdo();
+
+        $fields = [
+            'username',
+            'login',
+            'password'
+        ];
+        $fields = implode(', ', $fields);
+
+        $password = Auth::getInstance()->encryptPassword($data['password']);
+
+        $values = [];
+        $values['username'] = "'" . $data['username'] . "'";
+        $values['login']    = "'" . $data['login'] . "'";
+        $values['password'] = "'" . $password . "'";
+
+        $values = '(' . implode(', ', $values) . ')';
+
+        $sql = "INSERT INTO user ($fields) VALUES $values";
+        $stmt = $pdo->prepare($sql);
+
+        try {
+            $stmt->execute();
+        }
+        catch (\PDOException $e) {
+            Log::getInstance()->logError($e);
+        }
     }
 }
