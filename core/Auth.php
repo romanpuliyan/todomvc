@@ -35,4 +35,13 @@ class Auth
     {
         return md5($password);
     }
+
+    public function authenticate($data)
+    {
+        if(isset($data['password'])) {
+            unset($data['password']);
+        }
+
+        $_SESSION['user'] = $data;
+    }
 }

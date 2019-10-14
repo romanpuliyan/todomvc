@@ -119,7 +119,17 @@ class Registration extends Form
         $stmt = $pdo->prepare($sql);
 
         try {
+
+            // ADD USER
             $stmt->execute();
+            $id = $pdo->lastInsertId();
+
+            // GET ROW
+            $model = new User();
+            $user = $model->findById($id);
+
+            // AUTHENTICATE
+            Auth::getInstance()->authenticate($user);
         }
         catch (\PDOException $e) {
             Log::getInstance()->logError($e);

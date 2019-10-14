@@ -3,6 +3,7 @@
 namespace application\controllers;
 
 use core\Controller;
+use core\FlashMessages;
 use application\services\Registration;
 
 class UserController extends Controller
@@ -17,10 +18,10 @@ class UserController extends Controller
         $errors = [];
         $values = [];
         if($_POST) {
-
             $service = new Registration();
             if($service->register($_POST)) {
-                echo 'valid'; exit();
+                FlashMessages::getInstance()->set(FlashMessages::KEY_SUCCESS, "Thank's for registration");
+                $this->redirect('/user/login');
             }
             else {
                 $errors = $service->getErrors();
