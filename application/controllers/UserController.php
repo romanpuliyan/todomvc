@@ -3,7 +3,7 @@
 namespace application\controllers;
 
 use core\Controller;
-use application\models\Registration;
+use application\services\Registration;
 
 class UserController extends Controller
 {
@@ -18,13 +18,13 @@ class UserController extends Controller
         $values = [];
         if($_POST) {
 
-            $model = new Registration();
-            if($model->register($_POST)) {
+            $service = new Registration();
+            if($service->register($_POST)) {
                 echo 'valid'; exit();
             }
             else {
-                $errors = $model->getErrors();
-                $values = $model->getValues();
+                $errors = $service->getErrors();
+                $values = $service->getValues();
             }
         }
 

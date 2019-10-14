@@ -1,15 +1,15 @@
 <?php
 
-namespace application\models;
+namespace application\services;
 
-use core\Model;
 use core\Db;
 use core\Sanitizer;
 use core\Auth;
 use core\Log;
 use application\models\User;
+use application\services\Form;
 
-class Registration extends Model
+class Registration extends Form
 {
 
     const PASSWORD_MIN_LENGTH = 6;
