@@ -7,6 +7,7 @@ use core\Db;
 use core\Sanitizer;
 use core\Auth;
 use core\Log;
+use application\models\User;
 
 class Registration extends Model
 {
@@ -15,6 +16,8 @@ class Registration extends Model
 
     public function register($data)
     {
+
+        $pdo = Db::getInstance()->getPdo();
 
         $sanitizer = Sanitizer::getInstance();
         $data = $sanitizer->sanitizeArray($data);
@@ -28,6 +31,13 @@ class Registration extends Model
         // CHECK LOGIN
         if(!isset($data['login']) || empty($data['login'])) {
             $this->errors['login'] = 'Login is required';
+        }
+        else {
+            $model = new User();
+            $user = $model->findByLogin($data['login']);
+            if($user) {
+                $this->errors['login'] = 'There is other user with login "' . $data['login'] . '""';
+            }
         }
 
         // CHECK PASSWORD

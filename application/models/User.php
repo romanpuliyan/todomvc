@@ -10,9 +10,10 @@ class User
     public function findByLogin($login)
     {
         $pdo = Db::getInstance()->getPdo();
-        $stmt = $pdo->prepare("SELECT id, username, login, password FROM user WHERE login = ?");
-        $stmt->bind('login', $login);
+        $stmt = $pdo->prepare("SELECT id, username, login, password FROM user WHERE login = :login");
+        $stmt->bindParam(':login', $login);
         $stmt->execute();
-        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $user;
     }
 }
