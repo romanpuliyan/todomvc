@@ -35,5 +35,10 @@ $(document).ready(function() {
     $(".todo-submit").on("click", function(e) {
         e.preventDefault();
         console.log('fff');
-    })
+    });
+
+    $(".logout-button").on("click", function(e) {
+        e.preventDefault();
+        console.log('logout');
+    });
 });

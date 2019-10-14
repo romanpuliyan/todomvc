@@ -1,12 +1,23 @@
 <div class="page-content page-container" id="page-content">
     <div class="container d-flex justify-content-center todo-list-container">
+
         <div class="row container d-flex justify-content-center">
             <div class="col-lg-12">
                 <div class="card px-3">
                     <div class="card-body">
+
+                        <?php if($messageSuccess): ?>
+                            <div class="alert alert-success" role="alert">
+                                <?= $messageSuccess ?>
+                            </div>
+                        <?php endif; ?>
+
                         <h4 class="card-title">Awesome Todo list</h4>
                         <div class="add-items d-flex">
                             <button class="add btn btn-primary font-weight-bold todo-list-add-btn" data-toggle="modal" data-target="#newItemModal">Add</button>
+                        </div>
+                        <div class="add-items d-flex">
+                            <button class="add btn btn-primary font-weight-bold logout-button">Logout</button>
                         </div>
 
                         <!-- FILTER -->
