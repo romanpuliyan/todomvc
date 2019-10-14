@@ -6,12 +6,29 @@ use core\Auth;
 use core\Controller;
 use core\FlashMessages;
 use application\services\Registration;
+use application\services\Login;
 
 class UserController extends Controller
 {
     public function actionLogin()
     {
-        $this->view->render('user/login');
+        $errors = [];
+        $values = [];
+        if($_POST) {
+            $service = new Login();
+            if($service->login($_POST)) {
+                echo 'logged in'; exit();
+            }
+            else {
+                $errors = $service->getErrors();
+                $values = $service->getValues();
+            }
+        }
+
+        $this->view->render('user/login', [
+            'errors' => $errors,
+            'values' => $values
+        ]);
     }
 
     public function actionRegistration()
