@@ -6,11 +6,7 @@ class Auth
 {
     protected static $instance;
 
-    protected function __construct()
-    {
-        session_start();
-    }
-
+    protected function __construct() {}
     protected function __clone() {}
 
     public static function getInstance()
@@ -31,6 +27,15 @@ class Auth
         return $_SESSION['user'];
     }
 
+    public function hasIdentity()
+    {
+        if(isset($_SESSION['user'])) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function encryptPassword($password)
     {
         return md5($password);
@@ -43,5 +48,10 @@ class Auth
         }
 
         $_SESSION['user'] = $data;
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['user']);
     }
 }

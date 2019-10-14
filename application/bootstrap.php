@@ -9,4 +9,6 @@ require_once APPLICATION_PATH . '/../core/Route.php';
 spl_autoload_extensions('.php');
 spl_autoload_register('\core\Autoloader::load');
 
+session_start();
+
 \core\Route::execute();

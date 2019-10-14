@@ -2,6 +2,7 @@
 
 namespace application\controllers;
 
+use core\Auth;
 use core\Controller;
 use core\FlashMessages;
 use application\services\Registration;
@@ -33,5 +34,15 @@ class UserController extends Controller
             'errors' => $errors,
             'values' => $values
         ]);
+    }
+
+    public function actionLogout()
+    {
+        if(Auth::getInstance()->hasIdentity()) {
+            Auth::getInstance()->logout();
+            $this->redirect('/user/login');
+        }
+
+        $this->redirect('/');
     }
 }
