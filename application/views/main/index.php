@@ -87,14 +87,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="taskForm">
                     <div class="form-group">
                         <label for="itemTitle" class="col-form-label">Title:</label>
                         <input type="text" class="form-control" name="title" id="itemTitle">
+                        <div class="invalid-feedback" style="display:none"></div>
                     </div>
                     <div class="form-group">
                         <label for="itemDescription" class="col-form-label">Description:</label>
                         <textarea class="form-control" name="description" id="itemDescription"></textarea>
+                        <div class="invalid-feedback" style="display:none"></div>
                     </div>
                 </form>
             </div>

@@ -34,7 +34,42 @@ $(document).ready(function() {
 
     $(".todo-submit").on("click", function(e) {
         e.preventDefault();
-        console.log('fff');
+
+        var data = $("#taskForm").serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: '/task/create',
+            data: data,
+            dataType: 'json',
+            success: function(response) {
+
+                if(response.error != undefined) {
+
+                    var titleField = $("#itemTitle");
+                    var descriptionField = $("#itemDescription");
+
+                    if(response.errors.title != undefined) {
+                        titleField.addClass("is-invalid").removeClass("is-valid");
+                        titleField.siblings('.invalid-feedback').text(response.errors.title).show();
+                    }
+                    else {
+                        titleField.removeClass("is-invalid").addClass('is-valid');
+                        titleField.siblings('.invalid-feedback').text('').hide();
+                    }
+
+                    if(response.errors.description != undefined) {
+                        descriptionField.addClass("is-invalid").removeClass("is-valid");
+                        descriptionField.siblings('.invalid-feedback').text(response.errors.description).show();
+                    }
+                    else {
+                        descriptionField.removeClass("is-invalid").addClass('is-valid');
+                        descriptionField.siblings('.invalid-feedback').text('').hide();
+                    }
+                }
+
+            }
+        });
     });
 
     $(".logout-button").on("click", function(e) {
