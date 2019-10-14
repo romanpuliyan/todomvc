@@ -10,7 +10,14 @@ class TaskController extends Controller
     public function actionCreate()
     {
         if(!$_POST) {
-            return;
+            $response = [
+                'error'  => true,
+                'errors' => [
+                    'common' => 'Error while processing form'
+                ]
+            ];
+            echo json_encode($response);
+            exit();
         }
 
         $service = new Task();

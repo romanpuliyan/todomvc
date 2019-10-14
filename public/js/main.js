@@ -46,25 +46,33 @@ $(document).ready(function() {
 
                 if(response.error != undefined) {
 
-                    var titleField = $("#itemTitle");
-                    var descriptionField = $("#itemDescription");
+                    var titleField         = $("#itemTitle");
+                    var descriptionField   = $("#itemDescription");
+                    var modalDangerMessage = $("#modalDangerMessage");
 
                     if(response.errors.title != undefined) {
                         titleField.addClass("is-invalid").removeClass("is-valid");
-                        titleField.siblings('.invalid-feedback').text(response.errors.title).show();
+                        titleField.siblings(".invalid-feedback").text(response.errors.title).show();
                     }
                     else {
-                        titleField.removeClass("is-invalid").addClass('is-valid');
-                        titleField.siblings('.invalid-feedback').text('').hide();
+                        titleField.removeClass("is-invalid").addClass("is-valid");
+                        titleField.siblings(".invalid-feedback").text('').hide();
                     }
 
                     if(response.errors.description != undefined) {
                         descriptionField.addClass("is-invalid").removeClass("is-valid");
-                        descriptionField.siblings('.invalid-feedback').text(response.errors.description).show();
+                        descriptionField.siblings(".invalid-feedback").text(response.errors.description).show();
                     }
                     else {
-                        descriptionField.removeClass("is-invalid").addClass('is-valid');
-                        descriptionField.siblings('.invalid-feedback').text('').hide();
+                        descriptionField.removeClass("is-invalid").addClass("is-valid");
+                        descriptionField.siblings(".invalid-feedback").text("").hide();
+                    }
+
+                    if(response.errors.common != undefined) {
+                        modalDangerMessage.text(response.errors.common).show();
+                    }
+                    else {
+                        modalDangerMessage.text('').hide();
                     }
                 }
 
@@ -74,6 +82,6 @@ $(document).ready(function() {
 
     $(".logout-button").on("click", function(e) {
         e.preventDefault();
-        window.location.href = '/user/logout';
+        window.location.href = "/user/logout";
     });
 });
