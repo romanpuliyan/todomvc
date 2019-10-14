@@ -3,6 +3,8 @@
 namespace application\services;
 
 use core\Sanitizer;
+use core\Auth;
+use application\models\User;
 use application\services\Form;
 
 class Login extends Form
@@ -27,6 +29,22 @@ class Login extends Form
             return false;
         }
 
+        // FIND USER
+        $model = new User();
+        $user = $model->findByLogin($data['login']);
+        if(!$user) {
+            $this->errors['common'] = 'User not found';
+            return false;
+        }
+
+        // CHECK PASSWORD IS CORRECT
+        if($user['password'] != Auth::getInstance()->encryptPassword($data['password'])) {
+            $this->errors['common'] = 'Incorrect password';
+            return false;
+        }
+
+        echo 'validated'; exit();
+
         return true;
     }
 
@@ -34,6 +52,6 @@ class Login extends Form
     {
         if(isset($data['login'])) {
             $this->values['login'] = $data['login'];
-        }        
+        }
     }
 }
