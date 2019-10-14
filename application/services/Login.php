@@ -43,7 +43,8 @@ class Login extends Form
             return false;
         }
 
-        echo 'validated'; exit();
+        // AUTHENTICATE
+        Auth::getInstance()->authenticate($user);
 
         return true;
     }

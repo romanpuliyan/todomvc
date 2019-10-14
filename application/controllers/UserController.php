@@ -17,7 +17,7 @@ class UserController extends Controller
         if($_POST) {
             $service = new Login();
             if($service->login($_POST)) {
-                echo 'logged in'; exit();
+                $this->redirect('/');
             }
             else {
                 $errors = $service->getErrors();
@@ -39,7 +39,7 @@ class UserController extends Controller
             $service = new Registration();
             if($service->register($_POST)) {
                 FlashMessages::getInstance()->set(FlashMessages::KEY_SUCCESS, "Thank's for registration");
-                $this->redirect('/user/login');
+                $this->redirect('/');
             }
             else {
                 $errors = $service->getErrors();

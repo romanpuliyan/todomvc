@@ -38,11 +38,19 @@ class Auth
 
     public function encryptPassword($password)
     {
+        if(!$password) {
+            return NULL;
+        }
+
         return md5($password);
     }
 
     public function authenticate($data)
     {
+        if(!$data) {
+            return;
+        }
+
         if(isset($data['password'])) {
             unset($data['password']);
         }
