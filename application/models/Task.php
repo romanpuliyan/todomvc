@@ -98,12 +98,12 @@ class Task
             $stmt->bindParam(':description', $data['description'], \PDO::PARAM_STR);
         }
         if($data['dateFrom']) {
-            $value = strtotime(str_replace('/', '-', $data['dateFrom']));
-            $stmt->bindParam(':dateFrom', $value, \PDO::PARAM_INT);
+            $dateFrom = strtotime(str_replace('/', '-', $data['dateFrom']));
+            $stmt->bindParam(':dateFrom', $dateFrom, \PDO::PARAM_INT);
         }
         if($data['dateTo']) {
-            $value = strtotime(str_replace('/', '-', $data['dateTo']));
-            $stmt->bindParam(':dateTo', $value, \PDO::PARAM_INT);
+            $dateTo = strtotime(str_replace('/', '-', $data['dateTo']));
+            $stmt->bindParam(':dateTo', $dateTo, \PDO::PARAM_INT);
         }
 
         // GET RESULT

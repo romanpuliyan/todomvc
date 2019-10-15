@@ -142,9 +142,7 @@ $(document).ready(function() {
             data: "title=" + title + "&description=" + description + "&dateFrom=" + dateFrom + "&dateTo=" + dateTo,
             dataType: 'html',
             success: function(response) {
-                if(response.length > 0) {
-                    $(".list-wrapper").html(response);
-                }
+                $(".list-wrapper").html(response);
             }
         });
     });
