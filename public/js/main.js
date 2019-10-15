@@ -41,8 +41,12 @@ $(document).ready(function() {
         $(this).parent().remove();
     });
 
+    // INIT DATEPICKER
     $(function () {
-        $('.filter-date').datetimepicker({
+        $('.filter-date-from').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+        $('.filter-date-to').datetimepicker({
             format: 'DD/MM/YYYY'
         });
     });
@@ -102,6 +106,7 @@ $(document).ready(function() {
     // DELETE TASK
     $(".delete-button").on("click", function(e) {
         e.preventDefault();
+
         var buttonId = $(this).attr("id");
         var splited  = buttonId.split('_');
         var taskId   = splited[1];
@@ -118,6 +123,30 @@ $(document).ready(function() {
                 else if(response.success != undefined) {
                     window.location.href = '/';
                 }
+            }
+        });
+    });
+
+    // FILTER TASK
+    $(".todo-list-filter-btn").on("click", function(e) {
+        e.preventDefault();
+
+        var title       = $(".filter-title").val();
+        var description = $(".filter-description").val();
+        var dateFrom    = $(".filter-date-from-input").val();
+        var dateTo      = $(".filter-date-to-input").val();
+
+        if(title.length == 0 && description.length == 0 && dateFrom.length == 0 && dateTo.length == 0) {
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/task/filter',
+            data: "title=" + title + "&description=" + description + "&dateFrom=" + dateFrom + "&dateTo=" + dateTo,
+            dataType: 'html',
+            success: function(response) {
+
             }
         });
     });

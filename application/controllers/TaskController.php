@@ -7,6 +7,7 @@ use core\FlashMessages;
 use application\services\Task;
 use application\services\TaskDelete;
 use application\services\TaskStatus;
+use application\services\Task\TaskFilter;
 
 class TaskController extends Controller
 {
@@ -77,5 +78,20 @@ class TaskController extends Controller
             echo json_encode($response);
             exit();
         }
+    }
+
+    public function actionFilter()
+    {
+        if(!$_POST) {
+            return;
+        }
+
+        $service = new TaskFilter();
+        $rows = $service->filter($_POST);
+        if(!count($rows)) {
+            return;
+        }
+
+        var_dump($rows); exit();
     }
 }

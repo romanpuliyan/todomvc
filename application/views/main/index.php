@@ -33,16 +33,25 @@
                             <div class="form-row">
 
                                 <div class="form-group col-md-3">
-                                    <input type="text" class="form-control filter-name" placeholder="Name" />
+                                    <input type="text" class="form-control filter-title" placeholder="Title" />
                                 </div>
                                 <div class="form-group col-md-3">
                                     <input type="text" class="form-control filter-description" placeholder="Description" />
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    <div class="input-group date filter-date" id="filter-date" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" data-target="#filter-date"/>
-                                        <div class="input-group-append" data-target="#filter-date" data-toggle="datetimepicker">
+                                    <div class="input-group date filter-date-from" id="filter-date-from" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input filter-date-from-input" data-target="#filter-date-from" placeholder="From" />
+                                        <div class="input-group-append" data-target="#filter-date-from" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <div class="input-group date filter-date-to" id="filter-date-to" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input filter-date-to-input" data-target="#filter-date-to" placeholder="To"/>
+                                        <div class="input-group-append" data-target="#filter-date-to" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
                                     </div>

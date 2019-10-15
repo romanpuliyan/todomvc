@@ -65,4 +65,50 @@ class Task
 
         $stmt->execute();
     }
+
+    public function filter($userId, $data)
+    {
+
+        // PREPARE SQL
+        $sql = "SELECT id, title, description, status FROM task WHERE user_id = :user_id ";
+
+        if($data['title']) {
+            $sql .= " AND MATCH (title) AGAINST (:title IN BOOLEAN MODE) ";
+        }
+        if($data['description']) {
+            $sql .= " AND MATCH (description) AGAINST (:description IN BOOLEAN MODE) ";
+        }
+        if($data['dateFrom']) {
+            $sql .= " AND date_completed >= :dateFrom ";
+        }
+        if($data['dateTo']) {
+            $sql .= " AND date_completed <= :dateTo ";
+        }
+
+        $sql .= "ORDER BY id DESC";
+        $pdo = Db::getInstance()->getPdo();
+        $stmt = $pdo->prepare($sql);
+
+        // PREPARE PARAMS
+        $stmt->bindParam(':user_id', $userId, \PDO::PARAM_INT);
+        if($data['title']) {
+            $stmt->bindParam(':title', $data['title'], \PDO::PARAM_STR);
+        }
+        if($data['description']) {
+            $stmt->bindParam(':description', $data['description'], \PDO::PARAM_STR);
+        }
+        if($data['dateFrom']) {
+            $value = strtotime(str_replace('/', '-', $data['dateFrom']));
+            $stmt->bindParam(':dateFrom', $value, \PDO::PARAM_INT);
+        }
+        if($data['dateTo']) {
+            $value = strtotime(str_replace('/', '-', $data['dateTo']));
+            $stmt->bindParam(':dateTo', $value, \PDO::PARAM_INT);
+        }
+
+        // GET RESULT
+        $stmt->execute();
+        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $rows;
+    }
 }
