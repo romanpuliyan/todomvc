@@ -17,12 +17,16 @@ class TaskDelete
             Log::getInstance()->logMessage('Task delete. ID undefined');
             return false;
         }
-        $taskId = $data['taskId'];
+        $taskId = (int) $data['taskId'];
+
+        if(!$taskId) {
+            Log::getInstance()->logMessage("Task delete. ID is not integer. Value: '$taskId'");
+            return false;
+        }
 
         // CURRENT USER
         $user   = Auth::getInstance()->getIdentity();
         $userId = $user['id'];
-        $userId = 2;
 
         // CHECK USER IS OWNER
         $model = new Task();
@@ -30,6 +34,16 @@ class TaskDelete
         if($task['user_id'] != $userId) {
             $message = "Task delete. User with ID $userId is not owner of task $taskId";
             Log::getInstance()->logMessage($message);
+            return false;
+        }
+
+        // PROCESS
+        try {
+            $model->delete($taskId);
+        }
+        catch(\Exception $e) {
+            $this->errors['common'] = 'Error while deleting task';
+            Log::getInstance()->logError($e);
             return false;
         }
 
