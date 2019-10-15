@@ -100,11 +100,16 @@ $(document).ready(function() {
                 if(response.error != undefined) {
                     var pageDangerMessage = $("#pageDangerMessage");
 
-                    if(response.message.length > 0) {
+                    if(response.message != undefined) {
                         pageDangerMessage.text(response.message).show();
                     }
                     else {
-                        pageDangerMessage.text('').hide();
+                        if(response.errors != undefined && response.errors.common != undefined) {
+                            pageDangerMessage.text(response.errors.common).show();
+                        }
+                        else {
+                            pageDangerMessage.text('').hide();
+                        }
                     }
                 }
             }
