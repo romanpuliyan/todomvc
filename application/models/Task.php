@@ -19,4 +19,14 @@ class Task
         $list = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         return $list;
     }
+
+    public function findById($taskId)
+    {
+        $pdo = Db::getInstance()->getPdo();
+        $stmt = $pdo->prepare("SELECT id, user_id FROM task WHERE id = :id");
+        $stmt->bindParam(':id', $taskId);
+        $stmt->execute();
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $row;
+    }
 }

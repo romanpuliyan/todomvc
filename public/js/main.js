@@ -97,7 +97,16 @@ $(document).ready(function() {
             data: "taskId=" + taskId,
             dataType: 'json',
             success: function(response) {
-                console.log(response);
+                if(response.error != undefined) {
+                    var pageDangerMessage = $("#pageDangerMessage");
+
+                    if(response.message.length > 0) {
+                        pageDangerMessage.text(response.message).show();
+                    }
+                    else {
+                        pageDangerMessage.text('').hide();
+                    }
+                }
             }
         });
     });

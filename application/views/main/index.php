@@ -12,6 +12,8 @@
                             </div>
                         <?php endif; ?>
 
+                        <div class="alert alert-danger" role="alert" id="pageDangerMessage" style="display:none;"></div>
+
                         <h4 class="card-title">Awesome Todo list</h4>
                         <div class="add-items d-flex">
                             <button class="add btn btn-primary font-weight-bold todo-list-add-btn" data-toggle="modal" data-target="#newItemModal">Add</button>
