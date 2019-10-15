@@ -17,34 +17,33 @@ class View
 
     public function render($contentView, $params = array())
     {
-        $viewPath = $this->getViewPath($contentView);
-        $content = new Content();
-        $content->viewPath = $viewPath;        
-        $this->setContentParams($content, $params);
-
+        $content = $this->prepareContent($contentView, $params);
         include APPLICATION_PATH . '/views/layouts/' . $this->layout . '.php';
     }
 
     public function renderAjax($contentView, $params = array())
     {
-        $viewPath = $this->getViewPath($contentView);
-        $content = new Content();
-        $content->viewPath = $viewPath;
-        $this->setContentParams($content, $params);
+        $content = $this->prepareContent($contentView, $params);
         echo $content;
     }
 
-    protected function getViewPath($contentView)
+    protected function prepareContent($contentView, $params = array())
     {
-        return APPLICATION_PATH . '/views/' . $contentView . '.php';
-    }
+        $viewPath = $this->getViewPath($contentView);
+        $content = new Content();
+        $content->viewPath = $viewPath;
 
-    protected function setContentParams($content, $params)
-    {
         if(count($params)) {
             foreach($params as $key => $value) {
                 $content->$key = $value;
             }
         }
+
+        return $content;
+    }
+
+    protected function getViewPath($contentView)
+    {
+        return APPLICATION_PATH . '/views/' . $contentView . '.php';
     }
 }
