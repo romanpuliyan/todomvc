@@ -25,7 +25,13 @@ $(document).ready(function() {
             data: "taskId=" + taskId,
             dataType: 'json',
             success: function(response) {
-
+                if(response.error != undefined) {
+                    mainPageDangerMessage(response);
+                }
+                else if(response.success != undefined) {
+                    //window.location.href = '/';
+                    console.log('success');
+                }
             }
         });
 
@@ -108,19 +114,7 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(response) {
                 if(response.error != undefined) {
-                    var pageDangerMessage = $("#pageDangerMessage");
-
-                    if(response.message != undefined) {
-                        pageDangerMessage.text(response.message).show();
-                    }
-                    else {
-                        if(response.errors != undefined && response.errors.common != undefined) {
-                            pageDangerMessage.text(response.errors.common).show();
-                        }
-                        else {
-                            pageDangerMessage.text('').hide();
-                        }
-                    }
+                    mainPageDangerMessage(response);
                 }
                 else if(response.success != undefined) {
                     window.location.href = '/';
@@ -135,3 +129,19 @@ $(document).ready(function() {
         window.location.href = "/user/logout";
     });
 });
+
+function mainPageDangerMessage(response) {
+    var pageDangerMessage = $("#pageDangerMessage");
+
+    if(response.message != undefined) {
+        pageDangerMessage.text(response.message).show();
+    }
+    else {
+        if(response.errors != undefined && response.errors.common != undefined) {
+            pageDangerMessage.text(response.errors.common).show();
+        }
+        else {
+            pageDangerMessage.text('').hide();
+        }
+    }
+}
