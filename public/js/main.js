@@ -1,25 +1,35 @@
 $(document).ready(function() {
     var todoListItem = $('.todo-list');
 
-    $('.todo-list-add-btn').on("click", function(event) {
-        event.preventDefault();
-
-        var item = $(this).prevAll('.todo-list-input').val();
-
-        if (item) {
-            todoListItem.append("<li><div class='form-check'><label class='form-check-label'><input class='checkbox' type='checkbox'/>" + item + "<i class='input-helper'></i></label></div><i class='remove mdi mdi-close-circle-outline'></i></li>");
-            todoListInput.val("");
-        }
-    });
-
+    // CHANGE TASK STATUS
     todoListItem.on('change', '.checkbox', function() {
-        if ($(this).attr('checked')) {
-            $(this).removeAttr('checked');
+
+        var checkbox = $(this);
+        checkbox.attr("disabled", "disabled");
+
+        var completed = false;
+        if (checkbox.attr('checked')) {
+            checkbox.removeAttr('checked');
         } else {
-            $(this).attr('checked', 'checked');
+            completed = true;
+            checkbox.attr('checked', 'checked');
         }
 
-        $(this).closest("li").toggleClass('completed');
+        var checkboxId = checkbox.attr("id");
+        var splited    = checkboxId.split('_');
+        var taskId     = splited[1];
+
+        $.ajax({
+            type: 'POST',
+            url: '/task/change-status',
+            data: "taskId=" + taskId,
+            dataType: 'json',
+            success: function(response) {
+
+            }
+        });
+
+        checkbox.closest("li").toggleClass('completed');
     });
 
     todoListItem.on('click', '.remove', function() {

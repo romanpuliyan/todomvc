@@ -43,7 +43,7 @@
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    <button class="add btn btn-primary font-weight-bold todo-list-add-btn">Apply</button>
+                                    <button class="add btn btn-primary font-weight-bold todo-list-filter-btn">Apply</button>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                                         <li class="<?= $statusClass ?>">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input class="checkbox" type="checkbox" <?= $checked ?>>
+                                                    <input class="checkbox" type="checkbox" <?= $checked ?> id="checkbox_<?= $row['id'] ?>">
                                                     <?= $row['title']; ?>
                                                     <i class="input-helper"></i>
                                                 </label>

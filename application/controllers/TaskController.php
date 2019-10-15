@@ -6,6 +6,7 @@ use core\Controller;
 use core\FlashMessages;
 use application\services\Task;
 use application\services\TaskDelete;
+use application\services\TaskStatus;
 
 class TaskController extends Controller
 {
@@ -50,6 +51,24 @@ class TaskController extends Controller
             $response = [
                 'error'   => true,
                 'message' => 'Delete error'
+            ];
+            echo json_encode($response);
+            exit();
+        }
+    }
+
+    public function actionChangeStatus()
+    {
+        $this->checkIsPost();
+
+        $service = new TaskStatus();
+        if($service->change($_POST)) {
+
+        }
+        else {
+            $response = [
+                'error'   => true,
+                'message' => 'Task change status error'
             ];
             echo json_encode($response);
             exit();
