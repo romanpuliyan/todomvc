@@ -2,6 +2,7 @@
 
 namespace application\controllers;
 
+use core\Auth;
 use core\Controller;
 use core\FlashMessages;
 use application\services\Task;
@@ -87,11 +88,16 @@ class TaskController extends Controller
         }
 
         $service = new TaskFilter();
-        $rows = $service->filter($_POST);
-        if(!count($rows)) {
+        $list = $service->filter($_POST);
+        if(!count($list)) {
             return;
         }
 
-        var_dump($rows); exit();
+        $user = Auth::getInstance()->getIdentity();
+
+        $this->view->renderAjax('partials/task-list', [
+            'list' => $list,
+            'user' => $user
+        ]);
     }
 }
