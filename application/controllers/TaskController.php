@@ -5,9 +5,9 @@ namespace application\controllers;
 use core\Auth;
 use core\Controller;
 use core\FlashMessages;
-use application\services\Task;
-use application\services\TaskDelete;
-use application\services\TaskStatus;
+use application\services\Task\TaskCreate;
+use application\services\Task\TaskDelete;
+use application\services\Task\TaskStatus;
 use application\services\Task\TaskFilter;
 
 class TaskController extends Controller
@@ -16,7 +16,7 @@ class TaskController extends Controller
     {
         $this->checkIsPost();
 
-        $service = new Task();
+        $service = new TaskCreate();
         if($service->create($_POST)) {
             FlashMessages::getInstance()->set(FlashMessages::KEY_SUCCESS, "Task added");
             $response = [

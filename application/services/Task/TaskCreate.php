@@ -1,6 +1,6 @@
 <?php
 
-namespace application\services;
+namespace application\services\Task;
 
 use core\Db;
 use core\Sanitizer;
@@ -9,7 +9,7 @@ use core\Log;
 use application\models\Task as TaskModel;
 use application\services\Form;
 
-class Task extends Form
+class TaskCreate extends Form
 {
     public function create($data)
     {

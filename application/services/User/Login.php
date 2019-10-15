@@ -1,6 +1,6 @@
 <?php
 
-namespace application\services;
+namespace application\services\User;
 
 use core\Sanitizer;
 use core\Auth;

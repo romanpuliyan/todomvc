@@ -1,6 +1,6 @@
 <?php
 
-namespace application\services;
+namespace application\services\Task;
 
 use core\Auth;
 use core\Log;

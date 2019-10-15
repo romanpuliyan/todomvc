@@ -1,6 +1,6 @@
 <?php
 
-namespace application\services;
+namespace application\services\User;
 
 use core\Db;
 use core\Sanitizer;
