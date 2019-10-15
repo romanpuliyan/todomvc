@@ -43,16 +43,26 @@ class Task
     public function changeStatus($taskId, $completed)
     {
         $status = self::STATUS_NEW;
+        $dateCompleted = NULL;
         if($completed) {
             $status = self::STATUS_COMPLETED;
+            $dateCompleted = time();
         }
 
-        $sql = "UPDATE task SET status = :status WHERE id = :id";
+        $sql = "UPDATE task SET status = :status, date_completed = :date_completed WHERE id = :id";
 
         $pdo = Db::getInstance()->getPdo();
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $taskId, \PDO::PARAM_INT);
         $stmt->bindParam(':status', $status, \PDO::PARAM_INT);
+
+        if($completed) {
+            $stmt->bindParam(':date_completed', $dateCompleted, \PDO::PARAM_INT);
+        }
+        else {
+            $stmt->bindParam(':date_completed', $dateCompleted, \PDO::PARAM_NULL);
+        }
+
         $stmt->execute();
     }
 }
