@@ -25,4 +25,20 @@ class Controller
 
         header("Location: $route");
     }
+
+    protected function checkIsPost()
+    {
+        if($_POST) {
+            return;
+        }
+
+        $response = [
+            'error'  => true,
+            'errors' => [
+                'common' => 'Wrong request'
+            ]
+        ];
+        echo json_encode($response);
+        exit();
+    }
 }

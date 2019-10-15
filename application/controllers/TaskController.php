@@ -5,21 +5,13 @@ namespace application\controllers;
 use core\Controller;
 use core\FlashMessages;
 use application\services\Task;
+use application\services\TaskDelete;
 
 class TaskController extends Controller
 {
     public function actionCreate()
     {
-        if(!$_POST) {
-            $response = [
-                'error'  => true,
-                'errors' => [
-                    'common' => 'Fill the form please'
-                ]
-            ];
-            echo json_encode($response);
-            exit();
-        }
+        $this->checkIsPost();
 
         $service = new Task();
         if($service->create($_POST)) {
@@ -35,6 +27,24 @@ class TaskController extends Controller
                 'error'  => true,
                 'errors' => $service->getErrors(),
                 'values' => $service->getValues()
+            ];
+            echo json_encode($response);
+            exit();
+        }
+    }
+
+    public function actionDelete()
+    {
+        $this->checkIsPost();
+
+        $service = new TaskDelete();
+        if($service->delete($_POST)) {
+
+        }
+        else {
+            $response = [
+                'error'   => true,
+                'message' => 'Delete error'
             ];
             echo json_encode($response);
             exit();

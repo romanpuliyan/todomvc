@@ -69,7 +69,7 @@
                                                 </label>
                                                 <span><?= $row['description'] ?></span>
                                             </div>
-                                            <i class="remove mdi mdi-close-circle-outline"></i>
+                                            <i class="remove mdi mdi-close-circle-outline delete-button" id="delete_<?= $row['id'] ?>"></i>
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>

@@ -21,7 +21,8 @@ class MainController extends Controller
 
         $this->view->render('main/index', [
             'messageSuccess' => FlashMessages::getInstance()->get(FlashMessages::KEY_SUCCESS),
-            'list' => $list
+            'list' => $list,
+            'user' => $user
         ]);
     }
 }

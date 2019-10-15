@@ -32,6 +32,7 @@ $(document).ready(function() {
         });
     });
 
+    // CREATE TASK
     $(".todo-submit").on("click", function(e) {
         e.preventDefault();
 
@@ -83,6 +84,25 @@ $(document).ready(function() {
         });
     });
 
+    // DELETE TASK
+    $(".delete-button").on("click", function(e) {
+        e.preventDefault();
+        var buttonId = $(this).attr("id");
+        var splited  = buttonId.split('_');
+        var taskId   = splited[1];
+
+        $.ajax({
+            type: 'POST',
+            url: '/task/delete',
+            data: "taskId=" + taskId,
+            dataType: 'json',
+            success: function(response) {
+                console.log(response);
+            }
+        });
+    });
+
+    // LOGOUT
     $(".logout-button").on("click", function(e) {
         e.preventDefault();
         window.location.href = "/user/logout";

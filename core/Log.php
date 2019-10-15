@@ -4,9 +4,14 @@ namespace core;
 
 class Log
 {
+    protected $errorFilePath;
+
     protected static $instance;
 
-    protected function __construct() {}
+    protected function __construct() {
+        $this->errorFilePath = APPLICATION_PATH . '/runtime/error.log';
+    }
+
     protected function __clone() {}
 
     public static function getInstance()
@@ -20,8 +25,7 @@ class Log
 
     public function logError($e)
     {
-        $errorFilePath = APPLICATION_PATH . '/runtime/error.log';
-        $fp = fopen($errorFilePath, 'a+');
+        $fp = fopen($this->errorFilePath, 'a+');
         fwrite($fp, PHP_EOL);
         fwrite($fp, $e->getMessage() . PHP_EOL);
 
@@ -30,6 +34,14 @@ class Log
             fwrite($fp, $row['file'] . ' line: ' . $row['line'] . PHP_EOL);
         }
 
+        fclose($fp);
+    }
+
+    public function logMessage($message)
+    {
+        $fp = fopen($this->errorFilePath, 'a+');
+        fwrite($fp, PHP_EOL);
+        fwrite($fp, $message . PHP_EOL);
         fclose($fp);
     }
 }
