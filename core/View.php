@@ -21,7 +21,7 @@ class View
         include APPLICATION_PATH . '/views/layouts/' . $this->layout . '.php';
     }
 
-    public function renderAjax($contentView, $params = array())
+    public function renderPartial($contentView, $params = array())
     {
         $content = $this->prepareContent($contentView, $params);
         echo $content;
@@ -30,7 +30,7 @@ class View
     protected function prepareContent($contentView, $params = array())
     {
         $viewPath = $this->getViewPath($contentView);
-        $content = new Content();
+        $content = new Content($this);
         $content->viewPath = $viewPath;
 
         if(count($params)) {

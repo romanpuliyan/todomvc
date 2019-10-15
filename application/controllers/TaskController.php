@@ -95,7 +95,7 @@ class TaskController extends Controller
 
         $user = Auth::getInstance()->getIdentity();
 
-        $this->view->renderAjax('partials/task-list', [
+        $this->view->renderPartial('partials/task-list', [
             'list' => $list,
             'user' => $user
         ]);

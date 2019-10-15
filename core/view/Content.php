@@ -5,8 +5,14 @@ namespace core\view;
 class Content
 {
     public $viewPath;
+    public $view;
 
     protected $params = [];
+
+    public function __construct($view)
+    {
+        $this->view = $view;
+    }
 
     public function __toString()
     {
@@ -34,5 +40,10 @@ class Content
         }
 
         return NULL;
+    }
+
+    public function partial($viewPath, $params = array())
+    {
+        $this->view->renderPartial($viewPath, $params);
     }
 }
