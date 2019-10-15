@@ -112,6 +112,9 @@ $(document).ready(function() {
                         }
                     }
                 }
+                else if(response.success != undefined) {
+                    window.location.href = '/';
+                }
             }
         });
     });

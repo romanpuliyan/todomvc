@@ -31,7 +31,16 @@ class Log
 
         $trace = $e->getTrace();
         foreach($trace as $row) {
-            fwrite($fp, $row['file'] . ' line: ' . $row['line'] . PHP_EOL);
+            $file = '';
+            $line = '';
+            if(isset($row['file'])) {
+                $file = $row['file'];
+            }
+            if(isset($row['line'])) {
+                $line = $row['line'];
+            }
+
+            fwrite($fp, $file . ' line: ' . $line . PHP_EOL);
         }
 
         fclose($fp);

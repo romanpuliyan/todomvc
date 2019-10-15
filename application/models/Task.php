@@ -14,7 +14,7 @@ class Task
     {
         $pdo = Db::getInstance()->getPdo();
         $stmt = $pdo->prepare("SELECT id, user_id, title, description, status FROM task WHERE user_id = :user_id ORDER BY id DESC");
-        $stmt->bindParam(':user_id', $userId);
+        $stmt->bindParam(':user_id', $userId, \PDO::PARAM_INT);
         $stmt->execute();
         $list = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         return $list;
@@ -24,7 +24,7 @@ class Task
     {
         $pdo = Db::getInstance()->getPdo();
         $stmt = $pdo->prepare("SELECT id, user_id FROM task WHERE id = :id");
-        $stmt->bindParam(':id', $taskId);
+        $stmt->bindParam(':id', $taskId, \PDO::PARAM_INT);
         $stmt->execute();
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $row;
@@ -32,9 +32,11 @@ class Task
 
     public function delete($taskId)
     {
-        $sql = "DELETE FROM movies WHERE filmID =  :filmID";
+        $sql = "DELETE FROM task WHERE id = :id";
+
+        $pdo = Db::getInstance()->getPdo();
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':filmID', $_POST['filmID'], PDO::PARAM_INT);
+        $stmt->bindParam(':id', $taskId, \PDO::PARAM_INT);
         $stmt->execute();
     }
 }

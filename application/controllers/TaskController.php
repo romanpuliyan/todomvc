@@ -39,7 +39,12 @@ class TaskController extends Controller
 
         $service = new TaskDelete();
         if($service->delete($_POST)) {
-
+            FlashMessages::getInstance()->set(FlashMessages::KEY_SUCCESS, "Task deleted");
+            $response = [
+                'success' => true
+            ];
+            echo json_encode($response);
+            exit();
         }
         else {
             $response = [
