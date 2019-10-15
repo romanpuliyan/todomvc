@@ -4,10 +4,10 @@
 4. В настройках Apache указать такой конфиг
 
 <VirtualHost *:80 *:8080>
-        ServerName todo.local
-        DocumentRoot /home/beatom/www/todo/public
+        ServerName todomvc.local
+        DocumentRoot /home/beatom/www/todomvc/public
 
-        <Directory /home/beatom/www/todo/public>
+        <Directory /home/beatom/www/todomvc/public>
     		Options Indexes FollowSymLinks MultiViews
     		AllowOverride All
     		Order allow,deny
@@ -15,9 +15,11 @@
     		Require all granted
         </Directory>
 
-        ErrorLog ${APACHE_LOG_DIR}/todo.error
-        CustomLog ${APACHE_LOG_DIR}/todo.log combined
+        ErrorLog ${APACHE_LOG_DIR}/todomvc.error
+        CustomLog ${APACHE_LOG_DIR}/todomvc.log combined
 </VirtualHost>
 пути к каталогам свои.
 
-5. В корне проекта вручную создать файл .htaccess. Содержимое взять из файла _htaccess.
+5. В /etc/hosts указать, например 127.0.0.1  todomvc.local
+
+6. В корне проекта вручную создать файл .htaccess. Содержимое взять из файла _htaccess.
