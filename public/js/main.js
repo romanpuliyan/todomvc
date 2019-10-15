@@ -7,11 +7,11 @@ $(document).ready(function() {
         var checkbox = $(this);
         checkbox.attr("disabled", "disabled");
 
-        var completed = false;
+        var completed = 0;
         if (checkbox.attr('checked')) {
             checkbox.removeAttr('checked');
         } else {
-            completed = true;
+            completed = 1;
             checkbox.attr('checked', 'checked');
         }
 
@@ -22,15 +22,14 @@ $(document).ready(function() {
         $.ajax({
             type: 'POST',
             url: '/task/change-status',
-            data: "taskId=" + taskId,
+            data: "taskId=" + taskId + "&completed=" + completed,
             dataType: 'json',
             success: function(response) {
                 if(response.error != undefined) {
                     mainPageDangerMessage(response);
                 }
                 else if(response.success != undefined) {
-                    //window.location.href = '/';
-                    console.log('success');
+                    checkbox.removeAttr("disabled");
                 }
             }
         });

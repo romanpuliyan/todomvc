@@ -63,7 +63,11 @@ class TaskController extends Controller
 
         $service = new TaskStatus();
         if($service->change($_POST)) {
-
+            $response = [
+                'success' => true
+            ];
+            echo json_encode($response);
+            exit();
         }
         else {
             $response = [
