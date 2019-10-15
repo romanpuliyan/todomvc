@@ -136,17 +136,15 @@ $(document).ready(function() {
         var dateFrom    = $(".filter-date-from-input").val();
         var dateTo      = $(".filter-date-to-input").val();
 
-        if(title.length == 0 && description.length == 0 && dateFrom.length == 0 && dateTo.length == 0) {
-            return;
-        }
-
         $.ajax({
             type: 'POST',
             url: '/task/filter',
             data: "title=" + title + "&description=" + description + "&dateFrom=" + dateFrom + "&dateTo=" + dateTo,
             dataType: 'html',
             success: function(response) {
-
+                if(response.length > 0) {
+                    $(".list-wrapper").html(response);
+                }
             }
         });
     });
