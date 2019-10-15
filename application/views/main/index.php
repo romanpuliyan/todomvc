@@ -15,11 +15,17 @@
                         <div class="alert alert-danger" role="alert" id="pageDangerMessage" style="display:none;"></div>
 
                         <h4 class="card-title">Awesome Todo list</h4>
-                        <div class="add-items d-flex">
-                            <button class="add btn btn-primary font-weight-bold todo-list-add-btn" data-toggle="modal" data-target="#newItemModal">Add</button>
-                        </div>
-                        <div class="add-items d-flex">
-                            <button class="add btn btn-primary font-weight-bold logout-button">Logout</button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="add-items d-flex">
+                                    <button class="add btn btn-primary font-weight-bold todo-list-add-btn" data-toggle="modal" data-target="#newItemModal">Add</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="add-items d-flex justify-content-end">
+                                    <button class="add btn btn-primary font-weight-bold logout-button">Logout</button>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- FILTER -->

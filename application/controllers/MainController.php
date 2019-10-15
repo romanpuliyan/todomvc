@@ -20,9 +20,9 @@ class MainController extends Controller
         $list = $model->getList($user['id']);
 
         $this->view->render('main/index', [
-            'messageSuccess' => FlashMessages::getInstance()->get(FlashMessages::KEY_SUCCESS),
             'list' => $list,
-            'user' => $user
+            'user' => $user,
+            'messageSuccess' => FlashMessages::getInstance()->get(FlashMessages::KEY_SUCCESS)
         ]);
     }
 }

@@ -457,3 +457,6 @@ input[type="checkbox"] {
     position: absolute;
     z-index: 100 !important;
 }*/
+.list-wrapper ul li .form-check span {
+    margin-left: 1.75rem;
+}
