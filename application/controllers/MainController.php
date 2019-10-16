@@ -2,9 +2,7 @@
 
 namespace application\controllers;
 
-use core\Controller;
-use core\Auth;
-use core\FlashMessages;
+use core\{Controller, Auth, FlashMessages};
 use application\models\Task as TaskModel;
 
 class MainController extends Controller

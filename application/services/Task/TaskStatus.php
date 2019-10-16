@@ -2,8 +2,7 @@
 
 namespace application\services\Task;
 
-use core\Auth;
-use core\Log;
+use core\{Auth, Log};
 use application\models\Task;
 
 class TaskStatus

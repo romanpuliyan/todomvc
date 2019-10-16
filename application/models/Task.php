@@ -2,8 +2,7 @@
 
 namespace application\models;
 
-use core\Db;
-use core\Auth;
+use core\{Db, Auth};
 
 class Task
 {

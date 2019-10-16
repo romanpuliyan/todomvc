@@ -2,10 +2,7 @@
 
 namespace application\services\Task;
 
-use core\Db;
-use core\Sanitizer;
-use core\Auth;
-use core\Log;
+use core\{Db, Sanitizer, Auth, Log};
 use application\models\Task as TaskModel;
 use application\services\Form;
 

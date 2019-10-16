@@ -2,8 +2,7 @@
 
 namespace application\models;
 
-use core\Db;
-use core\Sanitizer;
+use core\{Db, Sanitizer};
 
 class User
 {

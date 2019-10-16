@@ -2,13 +2,13 @@
 
 namespace application\controllers;
 
-use core\Auth;
-use core\Controller;
-use core\FlashMessages;
-use application\services\Task\TaskCreate;
-use application\services\Task\TaskDelete;
-use application\services\Task\TaskStatus;
-use application\services\Task\TaskFilter;
+use core\{Auth, Controller, FlashMessages};
+use application\services\Task\{
+    TaskCreate,
+    TaskDelete,
+    TaskStatus,
+    TaskFilter
+};
 
 class TaskController extends Controller
 {

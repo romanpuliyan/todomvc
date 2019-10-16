@@ -2,11 +2,8 @@
 
 namespace application\controllers;
 
-use core\Auth;
-use core\Controller;
-use core\FlashMessages;
-use application\services\User\Registration;
-use application\services\User\Login;
+use core\{Auth, Controller, FlashMessages};
+use application\services\User\{Registration, Login};
 
 class UserController extends Controller
 {

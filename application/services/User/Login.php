@@ -2,8 +2,7 @@
 
 namespace application\services\User;
 
-use core\Sanitizer;
-use core\Auth;
+use core\{Sanitizer, Auth};
 use application\models\User;
 use application\services\Form;
 

@@ -2,8 +2,7 @@
 
 namespace application\services\Task;
 
-use core\Auth;
-use core\Sanitizer;
+use core\{Auth, Sanitizer};
 use application\models\Task;
 
 class TaskFilter

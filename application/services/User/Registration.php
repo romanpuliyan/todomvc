@@ -2,10 +2,7 @@
 
 namespace application\services\User;
 
-use core\Db;
-use core\Sanitizer;
-use core\Auth;
-use core\Log;
+use core\{Db, Sanitizer, Auth, Log};
 use application\models\User;
 use application\services\Form;
 
