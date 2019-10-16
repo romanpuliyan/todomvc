@@ -8,7 +8,12 @@ use application\services\Form;
 
 class Login extends Form
 {
-    public function login($data)
+
+    /**
+     * @param array $data
+     * @return bool
+     */
+    public function login(array $data): bool
     {
         $sanitizer = Sanitizer::getInstance();
         $data = $sanitizer->sanitizeArray($data);
@@ -48,7 +53,10 @@ class Login extends Form
         return true;
     }
 
-    protected function setValues($data)
+    /**
+     * @param array $data
+     */
+    protected function setValues(array $data)
     {
         if(isset($data['login'])) {
             $this->values['login'] = $data['login'];

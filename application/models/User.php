@@ -6,7 +6,12 @@ use core\{Db, Sanitizer};
 
 class User
 {
-    public function findByLogin($login)
+
+    /**
+     * @param string $login
+     * @return mixed
+     */
+    public function findByLogin(string $login)
     {
         $pdo = Db::getInstance()->getPdo();
         $stmt = $pdo->prepare("SELECT id, username, login, password FROM user WHERE login = :login");
@@ -16,7 +21,11 @@ class User
         return $user;
     }
 
-    public function findById($id)
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function findById(int $id)
     {
         $pdo = Db::getInstance()->getPdo();
         $stmt = $pdo->prepare("SELECT id, username, login, password FROM user WHERE id = :id");

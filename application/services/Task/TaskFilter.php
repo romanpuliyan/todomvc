@@ -7,7 +7,12 @@ use application\models\Task;
 
 class TaskFilter
 {
-    public function filter($data)
+
+    /**
+     * @param array $data
+     * @return array
+     */
+    public function filter(array $data)
     {
         $sanitizer = Sanitizer::getInstance();
         $data = $sanitizer->sanitizeArray($data);

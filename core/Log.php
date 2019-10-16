@@ -23,6 +23,9 @@ class Log
         return self::$instance;
     }
 
+    /**
+     * @param \Exception $e
+     */
     public function logError($e)
     {
         $fp = fopen($this->errorFilePath, 'a+');
@@ -46,7 +49,10 @@ class Log
         fclose($fp);
     }
 
-    public function logMessage($message)
+    /**
+     * @param string $message
+     */
+    public function logMessage(string $message)
     {
         $fp = fopen($this->errorFilePath, 'a+');
         fwrite($fp, PHP_EOL);

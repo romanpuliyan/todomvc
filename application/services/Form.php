@@ -7,12 +7,18 @@ class Form
     protected $errors = [];
     protected $values = [];
 
-    public function getErrors()
+    /**
+     * @return array
+     */
+    public function getErrors(): array
     {
         return $this->errors;
     }
 
-    public function getValues()
+    /**
+     * @return array
+     */
+    public function getValues(): array
     {
         return $this->values;
     }

@@ -8,7 +8,12 @@ use application\services\Form;
 
 class TaskCreate extends Form
 {
-    public function create($data)
+
+    /**
+     * @param array $data
+     * @return bool
+     */
+    public function create(array $data): bool
     {
         $sanitizer = Sanitizer::getInstance();
         $data = $sanitizer->sanitizeArray($data);
@@ -41,7 +46,10 @@ class TaskCreate extends Form
         return true;
     }
 
-    protected function setValues($data)
+    /**
+     * @param array $data
+     */
+    protected function setValues(array $data)
     {
         if(isset($data['title'])) {
             $this->values['title'] = $data['title'];
@@ -51,7 +59,10 @@ class TaskCreate extends Form
         }
     }
 
-    protected function process($data)
+    /**
+     * @param array $data
+     */
+    protected function process(array $data)
     {
         $pdo = Db::getInstance()->getPdo();
 

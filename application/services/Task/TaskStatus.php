@@ -7,7 +7,12 @@ use application\models\Task;
 
 class TaskStatus
 {
-    public function change($data)
+
+    /**
+     * @param array $data
+     * @return bool
+     */
+    public function change(array $data): bool
     {
         // CHECK TASK ID EXISTS
         if(!$data['taskId']) {

@@ -11,7 +11,11 @@ class Registration extends Form
 
     const PASSWORD_MIN_LENGTH = 6;
 
-    public function register($data)
+    /**
+     * @param array $data
+     * @return bool
+     */
+    public function register(array $data): bool
     {
 
         $pdo = Db::getInstance()->getPdo();
@@ -76,7 +80,10 @@ class Registration extends Form
         return true;
     }
 
-    protected function setValues($data)
+    /**
+     * @param array $data
+     */
+    protected function setValues(array $data)
     {
         if(isset($data['username'])) {
             $this->values['username'] = $data['username'];
@@ -92,7 +99,10 @@ class Registration extends Form
         }
     }
 
-    protected function process($data)
+    /**
+     * @param array $data
+     */
+    protected function process(array $data)
     {
         $pdo = Db::getInstance()->getPdo();
 

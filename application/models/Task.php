@@ -9,7 +9,11 @@ class Task
     const STATUS_NEW = 1;
     const STATUS_COMPLETED = 2;
 
-    public function getList($userId)
+    /**
+     * @param int $userId
+     * @return array
+     */
+    public function getList(int $userId): array
     {
         $pdo = Db::getInstance()->getPdo();
         $stmt = $pdo->prepare("SELECT id, user_id, title, description, status FROM task WHERE user_id = :user_id ORDER BY id DESC");
@@ -19,7 +23,11 @@ class Task
         return $list;
     }
 
-    public function findById($taskId)
+    /**
+     * @param int $taskId
+     * @return mixed
+     */
+    public function findById(int $taskId)
     {
         $pdo = Db::getInstance()->getPdo();
         $stmt = $pdo->prepare("SELECT id, user_id FROM task WHERE id = :id");
@@ -29,7 +37,10 @@ class Task
         return $row;
     }
 
-    public function delete($taskId)
+    /**
+     * @param int $taskId
+     */
+    public function delete(int $taskId)
     {
         $sql = "DELETE FROM task WHERE id = :id";
 
@@ -39,7 +50,11 @@ class Task
         $stmt->execute();
     }
 
-    public function changeStatus($taskId, $completed)
+    /**
+     * @param int $taskId
+     * @param int $completed
+     */
+    public function changeStatus(int $taskId, int $completed)
     {
         $status = self::STATUS_NEW;
         $dateCompleted = NULL;
@@ -65,7 +80,12 @@ class Task
         $stmt->execute();
     }
 
-    public function filter($userId, $data)
+    /**
+     * @param int $userId
+     * @param array $data
+     * @return array
+     */
+    public function filter(int $userId, array $data): array
     {
 
         // PREPARE SQL

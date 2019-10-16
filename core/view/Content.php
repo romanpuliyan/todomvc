@@ -42,7 +42,11 @@ class Content
         return NULL;
     }
 
-    public function partial($viewPath, $params = array())
+    /**
+     * @param string $viewPath path to view file
+     * @param array $params params for view
+     */
+    public function partial(string $viewPath, array $params = array())
     {
         $this->view->renderPartial($viewPath, $params);
     }

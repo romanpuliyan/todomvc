@@ -6,6 +6,10 @@ class Controller
 {
     public $view;
 
+    /**
+     * Controller constructor.
+     * @param View $view
+     */
     public function __construct($view)
     {
         $this->view = $view;
@@ -17,7 +21,11 @@ class Controller
 
     }
 
-    public function redirect($route)
+    /**
+     * @param string $route
+     * @throws \Exception
+     */
+    public function redirect(string $route)
     {
         if(!$route) {
             throw new \Exception('Undefined value for redirect');

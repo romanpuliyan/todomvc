@@ -18,13 +18,23 @@ class Sanitizer
         return self::$instance;
     }
 
-    public function sanitize($value)
+    /**
+     * Escape parameter
+     * @param mixed $value
+     * @return string
+     */
+    public function sanitize($value): string
     {
         $value = $this->clean($value);
         return $value;
     }
 
-    public function sanitizeArray($array)
+    /**
+     * Escape array values
+     * @param array $array
+     * @return array|void
+     */
+    public function sanitizeArray(array $array)
     {
         if(!count($array)) {
             return;
@@ -37,7 +47,12 @@ class Sanitizer
         return $array;
     }
 
-    protected function clean($value)
+    /**
+     * Process escaping
+     * @param mixed $value
+     * @return string
+     */
+    protected function clean($value): string
     {
         $value = strip_tags(trim($value));
         $value = htmlentities($value, ENT_QUOTES, 'UTF-8');

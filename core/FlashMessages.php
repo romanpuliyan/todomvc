@@ -21,7 +21,12 @@ class FlashMessages
         return self::$instance;
     }
 
-    public function get($key)
+    /**
+     * Get message and remove it from session
+     * @param string $key
+     * @return null|string
+     */
+    public function get(string $key)
     {
         if(isset($_SESSION['flash'][$key])) {
             $message = $_SESSION['flash'][$key];
@@ -32,7 +37,12 @@ class FlashMessages
         return NULL;
     }
 
-    public function set($key, $value)
+    /**
+     * Set message to session
+     * @param string $key
+     * @param string $value
+     */
+    public function set(string $key, string $value)
     {
         $_SESSION['flash'][$key] = $value;
     }

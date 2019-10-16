@@ -15,19 +15,35 @@ class View
         require_once APPLICATION_PATH . '/../core/view/Content.php';
     }
 
-    public function render($contentView, $params = array())
+    /**
+     * Render view with layout
+     * @param string $contentView path to a view file
+     * @param array $params data which a view file needs
+     */
+    public function render(string $contentView, array $params = array())
     {
         $content = $this->prepareContent($contentView, $params);
         include APPLICATION_PATH . '/views/layouts/' . $this->layout . '.php';
     }
 
-    public function renderPartial($contentView, $params = array())
+    /**
+     * Render view without layout
+     * @param string $contentView path to a view file
+     * @param array $params data which a view file needs
+     */
+    public function renderPartial(string $contentView, array $params = array())
     {
         $content = $this->prepareContent($contentView, $params);
         echo $content;
     }
 
-    protected function prepareContent($contentView, $params = array())
+    /**
+     * Create view content and set params
+     * @param string $contentView path to a view file
+     * @param array $params data which a view file needs
+     * @return Content
+     */
+    protected function prepareContent(string $contentView, array $params = array()): Content
     {
         $viewPath = $this->getViewPath($contentView);
         $content = new Content($this);
@@ -42,7 +58,12 @@ class View
         return $content;
     }
 
-    protected function getViewPath($contentView)
+    /**
+     * Full path to a view file
+     * @param string $contentView path to a view file
+     * @return string
+     */
+    protected function getViewPath(string$contentView): string
     {
         return APPLICATION_PATH . '/views/' . $contentView . '.php';
     }

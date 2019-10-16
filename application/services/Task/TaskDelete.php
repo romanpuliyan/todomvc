@@ -7,7 +7,12 @@ use application\models\Task;
 
 class TaskDelete
 {
-    public function delete($data)
+
+    /**
+     * @param array $data
+     * @return bool
+     */
+    public function delete(array $data): bool
     {
 
         // CHECK TASK ID EXISTS

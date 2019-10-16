@@ -27,7 +27,10 @@ class Auth
         return $_SESSION['user'];
     }
 
-    public function hasIdentity()
+    /**
+     * @return bool
+     */
+    public function hasIdentity(): bool
     {
         if(isset($_SESSION['user'])) {
             return true;
@@ -36,7 +39,11 @@ class Auth
         return false;
     }
 
-    public function encryptPassword($password)
+    /**
+     * @param $password
+     * @return null|string
+     */
+    public function encryptPassword(string $password)
     {
         if(!$password) {
             return NULL;
@@ -45,7 +52,10 @@ class Auth
         return md5($password);
     }
 
-    public function authenticate($data)
+    /**
+     * @param array $data user data to authenticate
+     */
+    public function authenticate(array $data)
     {
         if(!$data) {
             return;
